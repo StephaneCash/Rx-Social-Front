@@ -12,7 +12,7 @@ function Profil() {
                 <div className='log-container'>
                     <Log signin={false} signup={true} />
                     <div className='img-container' style={{color: "#333"}}>
-                        <img src='' alt='Image-Auth' />
+                        <img src='./img/user1.png' alt='Image-Auth' />
                     </div>
                 </div>}
         </div>

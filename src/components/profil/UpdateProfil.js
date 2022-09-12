@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { updateBio } from '../../actions/UserActions';
 import LeftNav from '../LeftNav';
+import { dateParserFunction } from '../Utils';
 import UploadImageProfil from './UploadImageProfil';
 
 function UpdateProfil() {
@@ -43,7 +44,7 @@ function UpdateProfil() {
                             </>
                         )}
                     </div>
-                    <h4>Membre depuis le : {userData ? userData.createdAt : ""}</h4>
+                    <h4>Membre depuis le : {userData ? dateParserFunction(userData.createdAt) : ""}</h4>
                 </div>
             </div>
         </div>
