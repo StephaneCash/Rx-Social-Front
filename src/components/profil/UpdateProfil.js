@@ -23,7 +23,7 @@ function UpdateProfil() {
             <div className='update-container'>
                 <div className='left-part'>
                     <h3>Photo de profil</h3>
-                    <img src={userData.picture} alt="Photo-user" />
+                    <img src={userData.picture ? userData.picture : './images/userConnected.png'} alt="Photo-user" />
                     <UploadImageProfil />
                 </div>
                 <div className='right-part'>
@@ -43,6 +43,7 @@ function UpdateProfil() {
                             </>
                         )}
                     </div>
+                    <h4>Membre depuis le : {userData ? userData.createdAt : ""}</h4>
                 </div>
             </div>
         </div>
