@@ -3,6 +3,7 @@ import { baseUrl } from "../base/BaseUrl";
 
 export const GET_USER = "GET_USER";
 export const UPLOAD_PICTURE = "UPLOAD_PICTURE";
+export const UPDATE_BIO = "UPDATE_BIO";
 
 export const getUser = (uid) => {
     return (dispatch) => {
@@ -18,7 +19,6 @@ export const getUser = (uid) => {
 };
 
 export const uploadPicture = (data, id, config) => {
-    console.log(data)
     return (dispatch) => {
         return axios
             .post(`${baseUrl}users/upload`, data, config)
@@ -36,4 +36,17 @@ export const uploadPicture = (data, id, config) => {
                 console.log(err.response)
             })
     }
-}
+};
+
+export const updateBio = (userId, bio) => {
+    return (dispatch) => {
+        return axios
+            .put(`${baseUrl}users/${userId}`, { bio: bio })
+            .then((resp) => {
+                dispatch({ type: UPDATE_BIO, payload: resp.data.docs.bio })
+            })
+            .catch(err => {
+                console.log(err.response);
+            });
+    };
+};

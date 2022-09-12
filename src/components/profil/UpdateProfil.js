@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateBio } from '../../actions/UserActions';
 import LeftNav from '../LeftNav';
 import UploadImageProfil from './UploadImageProfil';
 
@@ -8,6 +9,12 @@ function UpdateProfil() {
     const [updateForm, setUpdateForm] = useState(false);
 
     const userData = useSelector((state) => state.userReducer);
+    const dispach = useDispatch();
+
+    const handleUpdate = () => {
+        dispach(updateBio(userData._id, bio));
+        setUpdateForm(false);
+    };
 
     return (
         <div className="profil-container">
@@ -30,7 +37,9 @@ function UpdateProfil() {
                         )}
                         {updateForm && (
                             <>
-                                <textarea type="text" defaultValue={userData.bio}></textarea>
+                                <textarea type="text" defaultValue={userData.bio}
+                                    onChange={(e) => setBio(e.target.value)}></textarea>
+                                <button onClick={handleUpdate}>Valider modification</button>
                             </>
                         )}
                     </div>
