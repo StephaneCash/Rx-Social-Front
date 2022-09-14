@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
+import { dateParserFunction } from '../Utils';
 
 function Card(props) {
     const post = props.post;
@@ -20,7 +21,35 @@ function Card(props) {
             {isLoading ? (
                 <i className='fa fa-spinner fa-spin'></i>
             ) : (
-                <h2>Test</h2>
+                <>
+                    <div className='card-left'>
+                        <img src={usersData.length > 0 &&
+                            usersData.map((user) => {
+                                if (user._id === post.posterId) { return user.picture }
+                            }).join('')
+                        }
+                            alt='User_img'
+                        />
+                    </div>
+                    <div className="card-right">
+                        <div className="card-header">
+                            <div className="pseudo">
+                                <h3>
+                                    {usersData.length > 0 && (
+                                        usersData.
+                                            map((user) => {
+                                                if (user._id === post.posterId) {
+                                                    return user.pseudo
+                                                }
+                                            })
+                                            .join("")
+                                    )}
+                                </h3>
+                            </div>
+                            <span>{dateParserFunction(post.createdAt)}</span>
+                        </div>
+                    </div>
+                </>
             )}
         </li>
     )

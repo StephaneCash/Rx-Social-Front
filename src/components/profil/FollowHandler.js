@@ -5,6 +5,7 @@ import { isEmpty } from '../Utils';
 
 function FollowHandler(props) {
     const idToFollow = props.idToFollow;
+    const type = props.type;
 
     const userData = useSelector((state) => state.userReducer);
     const dispach = useDispatch();
@@ -32,13 +33,15 @@ function FollowHandler(props) {
         <>
             {isFollowed && !isEmpty(userData) && (
                 <span onClick={handleUnFollow}>
-                    <button style={{ color: 'red' }} className="unfollow-btn">Abonné</button>
+                    {type === "suggestion" && <button style={{ color: 'red' }} className="unfollow-btn">Abonné</button>}
+                    {type === "card" && <img src="./img/icons/checked.svg" alt="checked" />}
                 </span>
             )}
 
             {!isFollowed && !isEmpty(userData) && (
                 <span onClick={handleFollow}>
-                    <button style={{ color: 'red' }} className="follow-btn">Suivre</button>
+                    {type === "suggestion" && <button style={{ color: 'red' }} className="follow-btn">Suivre</button>}
+                    {type === "card" && <img src="./img/icons/check.svg" alt="check" />}
                 </span>
             )}
         </>
