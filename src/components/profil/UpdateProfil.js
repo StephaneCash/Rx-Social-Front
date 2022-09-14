@@ -12,6 +12,7 @@ function UpdateProfil() {
     const [followersPopup, setFollowersPopup] = useState(false);
 
     const userData = useSelector((state) => state.userReducer);
+    const usersData = useSelector((state) => state.usersReducer);
     const dispach = useDispatch();
 
     const handleUpdate = () => {
@@ -57,7 +58,41 @@ function UpdateProfil() {
                         <h3>Abonnements</h3>
                         <span className='cross' onClick={() => setFollowingPopup(false)}>&#10005;</span>
                         <ul>
-                            
+                            {usersData && usersData.map(user => {
+                                for (let i = 0; i < userData.following.length; i++) {
+                                    if (user._id === userData.following[i]) {
+                                        return (
+                                            <li key={user._id}>
+                                                <img src={user.picture} alt="Photo_user" />
+                                                <h4>{user.pseudo}</h4>
+                                            </li>
+                                        )
+                                    }
+                                }
+                            })}
+                        </ul>
+                    </div>
+                </div>
+            )}
+
+            {followersPopup && (
+                <div className='popup-profil-container'>
+                    <div className="modal">
+                        <h3>Abonnés</h3>
+                        <span className='cross' onClick={() => setFollowersPopup(false)}>&#10005;</span>
+                        <ul>
+                            {usersData && usersData.map(user => {
+                                for (let i = 0; i < userData.followers.length; i++) {
+                                    if (user._id === userData.followers[i]) {
+                                        return (
+                                            <li key={user._id}>
+                                                <img src={user.picture} alt="Photo_user" />
+                                                <h4>{user.pseudo}</h4>
+                                            </li>
+                                        )
+                                    }
+                                }
+                            })}
                         </ul>
                     </div>
                 </div>
