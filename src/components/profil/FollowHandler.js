@@ -22,12 +22,12 @@ function FollowHandler(props) {
     };
 
     useEffect(() => {
-        if (userData.following.includes(idToFollow)) {
+        if (userData.following !== undefined && userData.following.includes(idToFollow)) {
             setIsFollowed(true);
         } else {
             setIsFollowed(false);
         }
-    }, [userData, idToFollow]);
+    }, [userData, idToFollow,]);
 
     return (
         <>

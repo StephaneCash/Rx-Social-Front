@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { dateParserFunction } from '../Utils';
+import FollowHandler from '../profil/FollowHandler';
 
 function Card(props) {
     const post = props.post;
@@ -45,6 +46,7 @@ function Card(props) {
                                             .join("")
                                     )}
                                 </h3>
+                                <FollowHandler idToFollow={post.posterId} type={"card"} />
                             </div>
                             <span>{dateParserFunction(post.createdAt)}</span>
                         </div>
