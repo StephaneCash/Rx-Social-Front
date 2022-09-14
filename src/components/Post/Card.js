@@ -46,10 +46,15 @@ function Card(props) {
                                             .join("")
                                     )}
                                 </h3>
-                                <FollowHandler idToFollow={post.posterId} type={"card"} />
+                                {
+                                    post.posterId !== userData._id &&
+                                    <FollowHandler idToFollow={post.posterId} type={"card"} />
+                                }
                             </div>
                             <span>{dateParserFunction(post.createdAt)}</span>
                         </div>
+                        <p>{post.message}</p>
+                        {post.picture !== undefined && <img src={post.picture} className="card-pic" alt="Card-photo" />}
                     </div>
                 </>
             )}
