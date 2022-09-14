@@ -4,6 +4,8 @@ import { baseUrl } from "../base/BaseUrl";
 export const GET_USER = "GET_USER";
 export const UPLOAD_PICTURE = "UPLOAD_PICTURE";
 export const UPDATE_BIO = "UPDATE_BIO";
+export const FOLLOW_USER = "FOLLOW_USER";
+export const UNFOLLOW_USER = "UNFOLLOW_USER";
 
 export const getUser = (uid) => {
     return (dispatch) => {
@@ -48,5 +50,18 @@ export const updateBio = (userId, bio) => {
             .catch(err => {
                 console.log(err.response);
             });
+    };
+};
+
+export const followUser = (followerId, idToFollow) => {
+    return (dispatch) => {
+        return axios
+            .patch(`${baseUrl}users/follow/${followerId}`, { idToFollow: idToFollow })
+            .then(resp => {
+                dispatch({ type: FOLLOW_USER, payload: { idToFollow } })
+            })
+            .catch(err => {
+                console.log(err.response);
+            })
     };
 };

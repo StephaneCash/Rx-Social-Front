@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateBio } from '../../actions/UserActions';
 import LeftNav from '../LeftNav';
 import { dateParserFunction } from '../Utils';
+import FollowHandler from './FollowHandler';
 import UploadImageProfil from './UploadImageProfil';
 
 function UpdateProfil() {
@@ -63,8 +64,11 @@ function UpdateProfil() {
                                     if (user._id === userData.following[i]) {
                                         return (
                                             <li key={user._id}>
-                                                <img src={user.picture} alt="Photo_user" />
+                                                <img src={user.picture ? user.picture : './images/userConnected.png'} alt="Photo_user" />
                                                 <h4>{user.pseudo}</h4>
+                                                <div className='follow-handler'>
+                                                    <FollowHandler idToFollow={user._id} />
+                                                </div>
                                             </li>
                                         )
                                     }
@@ -86,8 +90,11 @@ function UpdateProfil() {
                                     if (user._id === userData.followers[i]) {
                                         return (
                                             <li key={user._id}>
-                                                <img src={user.picture} alt="Photo_user" />
+                                                <img src={user.picture ? user.picture : './images/userConnected.png'} alt="Photo_user" />
                                                 <h4>{user.pseudo}</h4>
+                                                <div className='follow-handler'>
+                                                    <FollowHandler idToFollow={user._id} />
+                                                </div>
                                             </li>
                                         )
                                     }
