@@ -45,6 +45,7 @@ function UpdateProfil() {
                         )}
                     </div>
                     <h4>Membre depuis le : {userData ? dateParserFunction(userData.createdAt) : ""}</h4>
+                    <h5>Abonnements : {userData.following ? userData.following.length : ""}</h5>
                 </div>
             </div>
         </div>

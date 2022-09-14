@@ -13,8 +13,8 @@ function App() {
   const [uid, setUid] = useState(null);
   const dispatch = useDispatch();
 
-  const verifUserConnected = () => {
-    axios.get(`${baseUrl}jwtid`, { withCredentials: true })
+  const verifUserConnected = async () => {
+    await axios.get(`${baseUrl}jwtid`, { withCredentials: true })
       .then(resp => {
         setUid(resp.data);
       })
