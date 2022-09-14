@@ -1,8 +1,15 @@
 import React from 'react'
+import LeftNav from '../components/LeftNav'
+import Thread from '../components/Thread'
 
 function Home() {
   return (
-    <div style={{color:"black"}}>Home</div>
+    <div className="home">
+      <LeftNav />
+      <div className='main'>
+        <Thread />
+      </div>
+    </div>
   )
 }
 
