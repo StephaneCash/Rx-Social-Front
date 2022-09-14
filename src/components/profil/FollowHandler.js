@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { followUser } from '../../actions/UserActions';
+import { followUser, unFollowUser } from '../../actions/UserActions';
 import { isEmpty } from '../Utils';
 
 function FollowHandler(props) {
@@ -16,7 +16,8 @@ function FollowHandler(props) {
     };
 
     const handleUnFollow = () => {
-
+        dispach(unFollowUser(userData._id, idToFollow));
+        setIsFollowed(false);
     };
 
     useEffect(() => {
