@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { dateParserFunction } from '../Utils';
 import FollowHandler from '../profil/FollowHandler';
+import LikeButton from './LikeButton';
 
 function Card(props) {
     const post = props.post;
@@ -55,6 +56,29 @@ function Card(props) {
                         </div>
                         <p>{post.message}</p>
                         {post.picture !== undefined && <img src={post.picture} className="card-pic" alt="Card-photo" />}
+                        {post.video &&
+                            <iframe
+                                width="500"
+                                height="300"
+                                src={post.video}
+                                frameBorder="0"
+                                allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;
+                                picture-in-picture'
+                                allowFullScreens
+                                title={post._id}
+                            >
+                            </iframe>
+                        }
+
+
+                        <div className='card-footer'>
+                            <div className='comment-icon'>
+                                <img src='./img/icons/message1.svg' alt='comment' />
+                                <span>{post.comments.length}</span>
+                            </div>
+                            <LikeButton post={post} />
+                            <img src="./img/icons/share.svg" alt="share" />
+                        </div>
                     </div>
                 </>
             )}

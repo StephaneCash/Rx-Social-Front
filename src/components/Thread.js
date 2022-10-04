@@ -20,7 +20,7 @@ function Thread() {
             <ul>
                 {posts.length > 0 &&
                     posts.map((post) => {
-                        return <Card post={post} key={post._id} />;
+                        return <Card post={post} key={post._id && post._id} />;
                     })
                 }
             </ul>
