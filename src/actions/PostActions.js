@@ -30,3 +30,16 @@ export const like_post = (postId, userId) => {
             })
     }
 }
+
+export const unlike_post = (postId, userId) => {
+    return (dispatch) => {
+        return axios
+            .patch(`${baseUrl}posts/unlike-post/${postId}`, { id: userId })
+            .then(res => {
+                dispatch({ type: UNLIKE_POST, payload: { postId, userId } });
+            })
+            .catch(err => {
+                console.log(err.response);
+            })
+    }
+}
