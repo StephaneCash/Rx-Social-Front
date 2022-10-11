@@ -24,7 +24,7 @@ function Thread() {
         }
         window.addEventListener('scroll', loadMore);
         return () => window.removeEventListener('scroll', loadMore);
-    }, [load, dispatch])
+    }, [load, dispatch, count])
     return (
         <div className='thread-container'>
             <ul>

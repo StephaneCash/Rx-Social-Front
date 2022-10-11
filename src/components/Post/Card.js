@@ -28,6 +28,7 @@ function Card(props) {
                         <img src={usersData.length > 0 &&
                             usersData.map((user) => {
                                 if (user._id === post.posterId) { return user.picture }
+                                else return null
                             }).join('')
                         }
                             alt='User_img'
@@ -38,13 +39,11 @@ function Card(props) {
                             <div className="pseudo">
                                 <h3>
                                     {usersData.length > 0 && (
-                                        usersData.
-                                            map((user) => {
-                                                if (user._id === post.posterId) {
-                                                    return user.pseudo
-                                                }
-                                            })
-                                            .join("")
+                                        usersData.map((user) => {
+                                            if (user._id === post.posterId) {
+                                                return user.pseudo
+                                            } else return null
+                                        }).join("")
                                     )}
                                 </h3>
                                 {
@@ -55,7 +54,7 @@ function Card(props) {
                             <span>{dateParserFunction(post.createdAt)}</span>
                         </div>
                         <p>{post.message}</p>
-                        {post.picture !== undefined && <img src={post.picture} className="card-pic" alt="Card-photo" />}
+                        {post.picture !== undefined && <img src={post.picture} className="card-pic" alt="Card" />}
                         {post.video &&
                             <iframe
                                 width="500"
