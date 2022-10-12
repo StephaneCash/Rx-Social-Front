@@ -1,22 +1,33 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { dateParserFunction } from '../Utils';
 import FollowHandler from '../profil/FollowHandler';
 import LikeButton from './LikeButton';
+import { updatePost } from '../../actions/PostActions';
 
 function Card(props) {
     const post = props.post;
 
     const [isLoading, setIsLoading] = useState(true);
-
+    const [isUpdated, setIsUpdated] = useState(false);
+    const [textUpdate, setTextUpdate] = useState(null);
     const usersData = useSelector((state) => state.usersReducer);
     const userData = useSelector((state) => state.userReducer);
+
+    const dispach = useDispatch();
+
+    const updateItem = () => {
+        if (textUpdate) {
+            dispach(updatePost(post._id, textUpdate));
+        }
+        setIsUpdated(false);
+    }
 
     useEffect(() => {
         if (usersData.length > 0) {
             setIsLoading(false);
         }
-    }, [usersData])
+    }, [usersData]);
 
     return (
         <li className="card-container" key={post._id}>
@@ -53,7 +64,20 @@ function Card(props) {
                             </div>
                             <span>{dateParserFunction(post.createdAt)}</span>
                         </div>
-                        <p>{post.message}</p>
+                        {isUpdated === false && <p>{post.message}</p>}
+                        {isUpdated === true && (
+                            <div className='update-post'>
+                                <textarea
+                                    defaultValue={post.message}
+                                    onChange={(e) => setTextUpdate(e.target.value)}
+                                />
+                                <div className='button-container'>
+                                    <button className="btn" onClick={updateItem}>
+                                        Valider la modification
+                                    </button>
+                                </div>
+                            </div>
+                        )}
                         {post.picture !== undefined && <img src={post.picture} className="card-pic" alt="Card" />}
                         {post.video &&
                             <iframe
@@ -68,8 +92,15 @@ function Card(props) {
                             >
                             </iframe>
                         }
-
-
+                        {
+                            userData._id === post.posterId && (
+                                <div className="button-container">
+                                    <div onClick={() => setIsUpdated(!isUpdated)}>
+                                        <img src="./img/icons/edit.svg" alt="edit-comment" />
+                                    </div>
+                                </div>
+                            )
+                        }
                         <div className='card-footer'>
                             <div className='comment-icon'>
                                 <img src='./img/icons/message1.svg' alt='comment' />

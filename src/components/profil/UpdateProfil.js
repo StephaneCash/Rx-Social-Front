@@ -28,7 +28,7 @@ function UpdateProfil() {
             <div className='update-container'>
                 <div className='left-part'>
                     <h3>Photo de profil</h3>
-                    <img src={userData.picture ? userData.picture : './images/userConnected.png'} alt="Photo-user" />
+                    <img src={userData.picture ? userData.picture : './images/userConnected.png'} alt="p-user" />
                     <UploadImageProfil />
                 </div>
                 <div className='right-part'>
@@ -72,7 +72,7 @@ function UpdateProfil() {
                                             </li>
                                         )
                                     }
-                                }
+                                } return null
                             })}
                         </ul>
                     </div>
@@ -98,7 +98,7 @@ function UpdateProfil() {
                                             </li>
                                         )
                                     }
-                                }
+                                } return null
                             })}
                         </ul>
                     </div>

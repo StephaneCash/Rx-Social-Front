@@ -4,6 +4,7 @@ import { baseUrl } from "../base/BaseUrl";
 export const GET_POSTS = "GET_POSTS";
 export const LIKE_POST = "LIKE_POST";
 export const UNLIKE_POST = "UNLIKE_POST";
+export const UPDATE_POST = "UPDATE_POST";
 
 export const getPosts = (num) => {
     return (dispatch) => {
@@ -44,3 +45,18 @@ export const unlike_post = (postId, userId) => {
             })
     }
 }
+
+export const updatePost = (postId, message) => {
+    return (dispatch) => {
+        return axios
+            .put(`${baseUrl}posts/${postId}`, { message: message })
+            .then(res => {
+                dispatch({
+                    type: UPDATE_POST, payload: { message, postId }
+                })
+            })
+            .catch(err => {
+                console.log(err.response)
+            })
+    }
+};
