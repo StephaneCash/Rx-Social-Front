@@ -7,6 +7,9 @@ export const UNLIKE_POST = "UNLIKE_POST";
 export const UPDATE_POST = "UPDATE_POST";
 export const DELETE_POST = "DELETE_POST";
 
+// Comments
+export const ADD_COMMENT = "ADD_COMMENT";
+
 export const getPosts = (num) => {
     return (dispatch) => {
         return axios
@@ -73,6 +76,19 @@ export const deletePost = (postId) => {
             })
             .catch(err => {
                 console.log(err.response);
+            })
+    }
+}
+
+export const addComment = (postId, commenterId, text, commenterPseudo) => {
+    return (dispatch) => {
+        return axios
+            .patch(`${baseUrl}posts/comment-post/${postId}`, { commenterId, text, commenterPseudo })
+            .then(res => {
+                dispatch({ type: ADD_COMMENT, payload: { postId } })
+            })
+            .catch(err => {
+                console.log(err.response)
             })
     }
 }

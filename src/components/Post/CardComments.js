@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { addComment, getPosts } from '../../actions/PostActions';
 import FollowHandler from '../profil/FollowHandler';
+import { timestampParser } from '../Utils';
 
 function CardComments(props) {
     const post = props.post;
@@ -10,8 +12,14 @@ function CardComments(props) {
     const userData = useSelector((state) => state.userReducer);
     const dispach = useDispatch();
 
-    const handleComment = () => {
+    const handleComment = (e) => {
+        e.preventDefault();
 
+        if (text) {
+            dispach(addComment(post._id, userData._id, text, userData.pseudo))
+                .then(() => dispach(getPosts()))
+                .then(() => setText(''));
+        }
     }
 
     return (
@@ -39,12 +47,25 @@ function CardComments(props) {
                                             <FollowHandler idToFollow={comment.commenterId} type={'card'} />
                                         )}
                                     </div>
+                                    <span>{timestampParser(comment.timestamp)}</span>
                                 </div>
+                                <p>{comment.text}</p>
                             </div>
                         </div>
                     )
                 })
             }
+            {userData._id && (
+                <form action='' onSubmit={handleComment} className="comment-form">
+                    <input
+                        type="text" name="text"
+                        onChange={(e) => setText(e.target.value)}
+                        placeholder="Laisser un commentaire"
+                    />
+                    <br />
+                    <input type="submit" value="Commenter" />
+                </form>
+            )}
         </div>
     )
 }
