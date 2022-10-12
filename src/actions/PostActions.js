@@ -5,6 +5,7 @@ export const GET_POSTS = "GET_POSTS";
 export const LIKE_POST = "LIKE_POST";
 export const UNLIKE_POST = "UNLIKE_POST";
 export const UPDATE_POST = "UPDATE_POST";
+export const DELETE_POST = "DELETE_POST";
 
 export const getPosts = (num) => {
     return (dispatch) => {
@@ -60,3 +61,18 @@ export const updatePost = (postId, message) => {
             })
     }
 };
+
+export const deletePost = (postId) => {
+    return (dispatch) => {
+        return axios
+            .delete(`${baseUrl}posts/${postId}`)
+            .then(res => {
+                dispatch({
+                    type: DELETE_POST, payload: { postId }
+                })
+            })
+            .catch(err => {
+                console.log(err.response);
+            })
+    }
+}
