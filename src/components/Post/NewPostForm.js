@@ -10,6 +10,14 @@ function NewPostForm() {
     const [file, setFile] = useState();
     const userData = useSelector((state) => state.userReducer);
 
+    const handlePicture = (e) => {
+
+    }
+
+    const handlePost = () => {
+
+    }
+
     useEffect(() => {
         if (userData) {
             setIsLoading(false);
@@ -37,6 +45,33 @@ function NewPostForm() {
                             <img src={userData.picture} alt="User-Pic" />
                         </div>
                     </NavLink>
+                    <div className='post-form'>
+                        <textarea
+                            name='message'
+                            id="message"
+                            placeholder='Quoi de neuf ?'
+                            onChange={(e) => setMessage(e.target.value)}
+                            value={message}
+                        />
+
+                        <div className='footer-form'>
+                            <div className='icon'>
+                                {!video && (
+                                    <>
+                                        <img src="./img/icons/picture.svg" alt="icon" />
+                                        <input type="file" id="file-upload" name="file" onChange={(e) => handlePicture(e)} />
+                                    </>
+                                )}
+                                {video && (
+                                    <button onClick={() => setVideo("")}>Supprimer la vidéo</button>
+                                )}
+                            </div>
+                            <div className='btn-send'>
+                                <button className='send' style={{ border: "1px solid #fff" }} onClick={handlePost}>Publier</button>
+                            </div>
+                        </div>
+                    </div>
+
                 </>
             )}
         </div>
