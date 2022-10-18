@@ -43,14 +43,14 @@ function CardComments(props) {
                             <div className='right-part'>
                                 <div className='comment-header'>
                                     <div className='pseudo'>
-                                        <h3 style={{color: "#fff"}}>{comment.commenterPseudo}</h3>
+                                        <h3>{comment.commenterPseudo}</h3>
                                         {comment.commenterId !== userData._id && (
                                             <FollowHandler idToFollow={comment.commenterId} type={'card'} />
                                         )}
                                     </div>
-                                    <span style={{color: "#fff"}}>{timestampParser(comment.timestamp)}</span>
+                                    <span>{timestampParser(comment.timestamp)}</span>
                                 </div>
-                                <p style={{color: "#fff"}}>{comment.text}</p>
+                                <p>{comment.text}</p>
                                 <EditDeleteComment comment={comment} postId={post._id} />
                             </div>
                         </div>
