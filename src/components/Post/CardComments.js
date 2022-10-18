@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addComment, getPosts } from '../../actions/PostActions';
 import FollowHandler from '../profil/FollowHandler';
 import { timestampParser } from '../Utils';
+import EditDeleteComment from './EditDeleteComment';
 
 function CardComments(props) {
     const post = props.post;
@@ -28,7 +29,7 @@ function CardComments(props) {
                 post.comments.map((comment) => {
                     return (
                         <div className={comment.commenterId === userData._id ?
-                            "comment-container client" : "comment-container"} key={comment._id}>
+                            "comment-container client" : "comment-container other"} key={comment._id}>
                             <div className='left-part'>
                                 <img src={usersData.length > 0 &&
                                     usersData.map((user) => {
@@ -42,14 +43,15 @@ function CardComments(props) {
                             <div className='right-part'>
                                 <div className='comment-header'>
                                     <div className='pseudo'>
-                                        <h3>{comment.commenterPseudo}</h3>
+                                        <h3 style={{color: "#fff"}}>{comment.commenterPseudo}</h3>
                                         {comment.commenterId !== userData._id && (
                                             <FollowHandler idToFollow={comment.commenterId} type={'card'} />
                                         )}
                                     </div>
-                                    <span>{timestampParser(comment.timestamp)}</span>
+                                    <span style={{color: "#fff"}}>{timestampParser(comment.timestamp)}</span>
                                 </div>
-                                <p>{comment.text}</p>
+                                <p style={{color: "#fff"}}>{comment.text}</p>
+                                <EditDeleteComment comment={comment} postId={post._id} />
                             </div>
                         </div>
                     )
