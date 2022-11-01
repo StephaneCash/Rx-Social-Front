@@ -29,7 +29,7 @@ function UploadImageProfil() {
       <input type="file" id="file" name='file' accept='.jpg, .jpeg, .png, .gif'
         onChange={(e) => setFile(e.target.files[0])} />
       <br />
-      <input type="submit" value="Envoyer" />
+      <input type="submit" value="Envoyer" style={{border:"1px solid silver"}} />
     </form>
   )
 }

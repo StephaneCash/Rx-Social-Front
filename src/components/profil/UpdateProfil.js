@@ -33,24 +33,24 @@ function UpdateProfil() {
                 </div>
                 <div className='right-part'>
                     <div className='bio-update'>
-                        <h3>Bio</h3>
+                        <h3>Biographie</h3>
                         {updateForm !== true && (
                             <>
-                                <p onClick={() => setUpdateForm(!updateForm)}>{userData ? userData.bio : ""}</p>
-                                <button onClick={() => setUpdateForm(!updateForm)}>Modifier Bio</button>
+                                <p style={{ color: "#fff" }} onClick={() => setUpdateForm(!updateForm)}>{userData ? userData.bio : ""}</p>
+                                <button onClick={() => setUpdateForm(!updateForm)} style={{border:"1px solid silver"}}>Modifier Bio</button>
                             </>
                         )}
                         {updateForm && (
                             <>
                                 <textarea type="text" defaultValue={userData.bio}
                                     onChange={(e) => setBio(e.target.value)}></textarea>
-                                <button onClick={handleUpdate}>Valider modification</button>
+                                <button onClick={handleUpdate} style={{border:"1px solid silver"}}>Valider modification</button>
                             </>
                         )}
                     </div>
-                    <h4>Membre depuis le : {userData ? dateParserFunction(userData.createdAt) : ""}</h4>
-                    <h5 onClick={() => setFollowingPopup(true)}>Abonnements : {userData.following ? userData.following.length : ""}</h5>
-                    <h5 onClick={() => setFollowersPopup(true)}>Abonnés : {userData.followers ? userData.followers.length : ""}</h5>
+                    <h4 style={{ color: "white" }}>Membre depuis le : {userData ? dateParserFunction(userData.createdAt) : ""}</h4>
+                    <h5 style={{ color: "silver" }} onClick={() => setFollowingPopup(true)}>Abonnements : {userData.following ? userData.following.length : ""}</h5>
+                    <h5 style={{ color: "silver" }} onClick={() => setFollowersPopup(true)}>Abonnés : {userData.followers ? userData.followers.length : ""}</h5>
                 </div>
             </div>
             {followingPopup && (
