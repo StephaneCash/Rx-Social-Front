@@ -2,6 +2,7 @@ import axios from "axios";
 import { baseUrl } from "../base/BaseUrl";
 
 export const GET_POSTS = "GET_POSTS";
+export const ADD_POST = "ADD_POST";
 export const LIKE_POST = "LIKE_POST";
 export const UNLIKE_POST = "UNLIKE_POST";
 export const UPDATE_POST = "UPDATE_POST";
@@ -25,6 +26,13 @@ export const getPosts = (num) => {
             });
     };
 };
+
+export const addPost = (data) => {
+    return (dispatch) => {
+        return axios
+            .post(`${baseUrl}posts`, data)
+    };
+}
 
 export const like_post = (postId, userId) => {
     return (dispatch) => {
