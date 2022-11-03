@@ -15,7 +15,7 @@ function Trainding() {
       <LeftNav />
       <div className='main'>
         <ul>
-          {trendingList && trendingList.map((post) =>
+          {trendingList.length > 0 && trendingList.map((post) =>
             <Card post={post} key={post._id} />
           )}
         </ul>
