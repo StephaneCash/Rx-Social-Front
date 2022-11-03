@@ -31,7 +31,7 @@ function NewPostForm() {
 
             await dispach(addPost(data));
             dispach(getPosts());
-            cancelPost();
+            cancelPost()
         } else {
             alert('Veuillez entrer un message à publier')
         }
