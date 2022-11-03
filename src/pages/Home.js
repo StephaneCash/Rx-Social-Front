@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { UidContext } from '../components/AppContext'
 import LeftNav from '../components/LeftNav'
 import NewPostForm from '../components/Post/NewPostForm';
+import FriendsHit from '../components/profil/FriendsHit';
 import Thread from '../components/Thread'
 import Trends from '../components/Trends';
 
@@ -22,6 +23,7 @@ function Home() {
         <div className='right-side-container'>
           <div className='wrapper'>
             <Trends />
+            {uid && <FriendsHit />}
           </div>
         </div>
       </div>

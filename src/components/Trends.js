@@ -16,14 +16,13 @@ function Trends() {
                 return b.likers.length - a.likers.length
             });
             sortedArr.length = 3;
-            console.log(sortedArr)
             dispatch(getTrends(sortedArr));
         }
     }, [posts, dispatch])
 
     return (
         <div className='trending-container'>
-            <h4>Suggestions</h4>
+            <h4>Tendances</h4>
             <NavLink to="/trending">
                 <ul>
                     {trendingList.length &&
