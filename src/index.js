@@ -5,15 +5,16 @@ import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
-import logger from 'redux-logger';
 import rootReducer from './reducers';
 import { getUsers } from './actions/UsersActions';
+import { getPosts } from './actions/PostActions';
 
 const store = createStore(
-  rootReducer, composeWithDevTools(applyMiddleware(thunk, logger))
+  rootReducer, composeWithDevTools(applyMiddleware(thunk))
 );
 
 store.dispatch(getUsers());
+store.dispatch(getPosts());
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

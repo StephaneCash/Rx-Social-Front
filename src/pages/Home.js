@@ -3,6 +3,7 @@ import { UidContext } from '../components/AppContext'
 import LeftNav from '../components/LeftNav'
 import NewPostForm from '../components/Post/NewPostForm';
 import Thread from '../components/Thread'
+import Trends from '../components/Trends';
 
 function Home() {
 
@@ -16,6 +17,13 @@ function Home() {
           {uid ? <NewPostForm /> : ""}
         </div>
         <Thread />
+      </div>
+      <div className='right-side'>
+        <div className='right-side-container'>
+          <div className='wrapper'>
+            <Trends />
+          </div>
+        </div>
       </div>
     </div>
   )
