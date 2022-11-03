@@ -86,7 +86,7 @@ function SignUp() {
 
                         <br />
 
-                        <input type="submit" value="S'inscrire" />
+                        <input type="submit" value="S'inscrire" style={{ border: "1px solid silver" }} />
                     </form>
             }
         </>

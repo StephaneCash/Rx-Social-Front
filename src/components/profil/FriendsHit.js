@@ -46,7 +46,7 @@ function FriendsHit() {
 
     return (
         <div className='get-friends-container'>
-            <h4>Suggestions</h4>
+            <h4>Suggestions amis</h4>
             {load ? (
                 <div className="icon">
                     <i className='fa fa-spinner fa-pulse'></i>

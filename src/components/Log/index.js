@@ -21,9 +21,9 @@ function Log(props) {
         <div className='connection-form'>
             <div className='form-container'>
                 <ul>
-                    <li onClick={handleFormConnexionAndInscription} id="register"
+                    <li style={{ border: "1px solid silver" }} onClick={handleFormConnexionAndInscription} id="register"
                         className={signup ? "active-btn" : null}>S'inscrire</li>
-                    <li onClick={handleFormConnexionAndInscription} id="login"
+                    <li style={{ border: "1px solid silver" }} onClick={handleFormConnexionAndInscription} id="login"
                         className={signIn ? "active-btn" : null}>Se connecter</li>
                 </ul>
 
