@@ -51,6 +51,10 @@ function Trends() {
                                             }).join("")} alt="user_" />
                                         )}
                                     </div>
+                                    <div className='trend-content'>
+                                        <p>{post.message}</p>
+                                        <span>Lire</span>
+                                    </div>
                                 </li>
                             )
                         })
