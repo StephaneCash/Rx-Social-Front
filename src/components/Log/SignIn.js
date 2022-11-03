@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import axios from "axios";
 import { baseUrl } from "../../base/BaseUrl"
+import {useNavigate} from "react-router-dom";
 
 function SignIn() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState('');
     const [err, setErr] = useState('');
+
+    let navigate = useNavigate();
 
     const maxAge = 3 * 24 * 60 * 60 * 1000;
 
@@ -18,7 +21,7 @@ function SignIn() {
                 localStorage.setItem('token', resp.data.token);
                 document.cookie = `jwt=${resp.data.token}; max-age=${maxAge}` ;
 
-                window.location = "/";
+                window.location = "/home";
             })
             .catch(err => {
                 console.log(err.response.data.errors);

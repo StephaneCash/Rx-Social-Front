@@ -25,7 +25,7 @@ function Navbar() {
                     <ul>
                         <li></li>
                         <li className="welcom">
-                            <NavLink to='/profil'>
+                            <NavLink to='/'>
                                 <h5>Bienvenu(e) {userData ? userData.pseudo : null}</h5>
                             </NavLink>
                         </li>
@@ -35,7 +35,7 @@ function Navbar() {
                     <ul>
                         <li></li>
                         <li>
-                            <NavLink to="/profil">
+                            <NavLink to="/">
                                 <img src='./img/icons/login.svg' alt='Login' />
                             </NavLink>
                         </li>

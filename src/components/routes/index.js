@@ -11,8 +11,8 @@ function index() {
         <BrowserRouter>
             <Navbar />
             <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path='/profil' element={<Profil />} />
+                <Route path="/" element={<Profil />} />
+                <Route path='/home' element={<Home />} />
                 <Route path='/trending' element={<Trainding />} />
                 <Route path='*' element={<NotFound />} />
             </Routes>

@@ -13,7 +13,10 @@ function Logout() {
 
   const logutFunction = async () => {
     await axios.get(`${baseUrl}users/logout`)
-      .then(() => removeCookie('jwt'))
+      .then(() => {
+        removeCookie('jwt')
+        window.location = "/"
+      })
       .catch(err => {
         console.log(err.response)
       });
