@@ -5,6 +5,7 @@ import Profil from '../../pages/Profil';
 import Trainding from '../../pages/Trainding';
 import NotFound from '../../pages/NotFound';
 import Navbar from '../Navbar';
+import Chat from '../../pages/Chat';
 
 function index() {
     return (
@@ -15,6 +16,7 @@ function index() {
                 <Route path='/home' element={<Home />} />
                 <Route path='/trending' element={<Trainding />} />
                 <Route path='*' element={<NotFound />} />
+                <Route path='/chat' element={<Chat />} />
             </Routes>
         </BrowserRouter>
     )
