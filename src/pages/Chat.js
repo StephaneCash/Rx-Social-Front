@@ -11,7 +11,6 @@ function Chat() {
     const userData = useSelector((state) => state.userReducer);
 
     const [currentChat, setCurrentChat] = useState(undefined);
-    const [isLoaded, setIsLoaded] = useState(false);
 
     const handleChatChange = (chat) => {
         setCurrentChat(chat);
@@ -24,7 +23,7 @@ function Chat() {
                     <Contacts currentUser={userData} contacts={usersData} changeChat={handleChatChange} />
                     {
                         currentChat === undefined ?
-                        <Welcome currentUser={userData} /> : <ChatContainer currentUser={userData} />
+                        <Welcome currentUser={userData} /> : <ChatContainer currentUser={currentChat} />
                     }
                 </div>
             </Container>
