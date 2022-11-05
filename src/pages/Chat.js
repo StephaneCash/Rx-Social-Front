@@ -1,12 +1,24 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux';
 import styled from 'styled-components'
+import Contacts from '../components/Chat/Contacts';
 
 function Chat() {
+
+    const usersData = useSelector((state) => state.usersReducer);
+    const userData = useSelector((state) => state.userReducer);
+
+    const [currentChat, setCurrentChat] = useState(undefined);
+
+    const handleChatChange = (chat) => {
+        setCurrentChat(chat);
+    }
+
     return (
         <div className=''>
             <Container>
                 <div className='container'>
-                    Chat
+                    <Contacts currentUser={userData} contacts={usersData} changeChat={handleChatChange} />
                 </div>
             </Container>
         </div>
@@ -26,7 +38,7 @@ const Container = styled.div`
 
     .container {
         height: 85vh;
-        width: 85vh;
+        width: 85%;
         background-color: #00000076;
         display: grid;
         grid-template-columns: 25% 75%;

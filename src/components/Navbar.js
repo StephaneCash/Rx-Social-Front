@@ -13,7 +13,7 @@ function Navbar() {
         <nav>
             <div className="nav-container">
                 <div className="logo">
-                    <NavLink to="/">
+                    <NavLink to="/home">
                         <div className="logo">
                             <img src="" alt="Logo" />
                             <h3>Police</h3>
