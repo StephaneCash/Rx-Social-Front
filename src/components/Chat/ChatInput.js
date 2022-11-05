@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import Picker from "emoji-picker-react";
+import PickerEmojiPicker  from "emoji-picker-react";
 
 function ChatInput() {
 
@@ -11,16 +11,22 @@ function ChatInput() {
         setShowPicker(!showPicker);
     };
 
+    const handleEmojiClick = (event, emoji) => {
+        let message = msg;
+        message += event.emoji;
+        setMsg(message)
+    }
+
     return (
         <Container>
             <div className='button-container'>
                 <div className='emoji'>
                     <i className='fa fa-smile-o' onClick={handleShowEmoji}></i>
-                    {showPicker && <Picker />}
+                    {showPicker && <PickerEmojiPicker onEmojiClick={handleEmojiClick} />}
                 </div>
             </div>
             <form className='input-container'>
-                <input type="text" placeholder='Ecrire votre message ici' />
+                <input type="text" placeholder='Ecrire votre message ici' value={msg} onChange={(e) => setMsg(e.target.value)} />
                 <button className='submit'>
                     <i className='fa fa-send'></i>
                 </button>
@@ -48,6 +54,10 @@ const Container = styled.div`
                 font-size: 1.5rem;
                 color: #ffff00c8;
                 cursor: pointer;
+            }
+            .EmojiPickerReact  {
+                position: absolute;
+                top: -470px;
             }
         }
     }
