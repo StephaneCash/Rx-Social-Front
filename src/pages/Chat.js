@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import styled from 'styled-components'
+import ChatContainer from '../components/Chat/ChatContainer';
 import Contacts from '../components/Chat/Contacts';
+import Welcome from '../components/Chat/Welcome';
 
 function Chat() {
 
@@ -9,6 +11,7 @@ function Chat() {
     const userData = useSelector((state) => state.userReducer);
 
     const [currentChat, setCurrentChat] = useState(undefined);
+    const [isLoaded, setIsLoaded] = useState(false);
 
     const handleChatChange = (chat) => {
         setCurrentChat(chat);
@@ -19,6 +22,10 @@ function Chat() {
             <Container>
                 <div className='container'>
                     <Contacts currentUser={userData} contacts={usersData} changeChat={handleChatChange} />
+                    {
+                        currentChat === undefined ?
+                        <Welcome currentUser={userData} /> : <ChatContainer currentUser={userData} />
+                    }
                 </div>
             </Container>
         </div>

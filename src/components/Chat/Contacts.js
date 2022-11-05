@@ -31,7 +31,7 @@ function Contacts(props) {
                 currentImage && currentUser && (
                     <Container>
                         <div className='brand'>
-                            <img src="logo.jpg" alt="Logo" />
+                            <i className='fa fa-comments fa-2x' style={{ color: "white" }}></i>
                             <h3>Chat</h3>
                         </div>
                         <div className='contacts'>
@@ -42,7 +42,7 @@ function Contacts(props) {
                                             <div
                                                 className={`contact ${index === currentUserSelected ? "selected" : ""}`}
                                                 key={index}
-                                                onClick={()=>changeCurrentChat(index, user)}
+                                                onClick={() => changeCurrentChat(index, user)}
                                             >
                                                 <div className='avatar'>
                                                     <img src={user.picture} alt="picUser" />
