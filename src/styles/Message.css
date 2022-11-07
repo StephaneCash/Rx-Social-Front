@@ -1,10 +1,10 @@
 .chat-messages .message .content {
     max-width: 40%;
     overflow-wrap: break-word;
-    padding: 1rem;
-    font-size: 1.1rem;
+    padding: 0.5rem;
+    font-size: 1rem;
     border-radius: 1rem;
-    color: #d1d1d1;
+    color: #fff;
 }
 
 .chat-messages .sended {
@@ -12,7 +12,7 @@
 }
 
 .chat-messages .sended .content {
-    background-color: #4f04ff21;
+    background-color: #6585ac;
 }
 
 .chat-messages .received {
@@ -20,7 +20,8 @@
 }
 
 .chat-messages .received .content {
-    background-color: #9900ff20;
+    background-color: #d1d1d1;
+    color: black;
 }
 
 .jQezso {

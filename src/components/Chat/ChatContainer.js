@@ -81,6 +81,7 @@ function ChatContainer(props) {
                         <h3>{currentUser && currentUser.pseudo}</h3>
                     </div>
                 </div>
+                
                 <BackToHome />
             </div>
             <div className="chat-messages">
@@ -116,6 +117,7 @@ const Container = styled.div`
         justify-content: space-between;
         align-items: center;
         padding: 0 2rem;
+        border-bottom: 1px solid silver;
 
         .user-details{
             display: flex;
@@ -131,7 +133,7 @@ const Container = styled.div`
            }
            .username {
             h3 {
-                color: white;
+                color: #555;
             }
            }
         }

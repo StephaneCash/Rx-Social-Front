@@ -51,12 +51,14 @@ const Container = styled.div`
     justify-content: center;
     gap: 1rem;
     align-items: center;
-    background-color: #131324;
+    background-color: #efefef;
 
     .container {
         height: 85vh;
         width: 85%;
-        background-color: #00000076;
+        background-color: white;
+        border-radius: 6px;
+        border: 1px solid #0c50a2;
         display: grid;
         grid-template-columns: 25% 75%;
 

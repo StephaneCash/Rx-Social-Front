@@ -34,15 +34,9 @@ function ChatInput(props) {
                     <i className='fa fa-smile-o' onClick={handleShowEmoji}></i>
                     {showPicker && <Picker onEmojiClick={handleEmojiClick} />}
                 </div>
-                <div className='post-container'>
-                    <div className='post-form'>
-                        <div className='footer-form'>
-                            <div className='icon'>
-                                <img src="./img/icons/picture.svg" alt="icon" />
-                                <input type="file" id="file-upload" name="file" />
-                            </div>
-                        </div>
-                    </div>
+                <div className='fileUpload' style={{ cursor: "pointer" }}>
+
+                    <input type="file" id="file-upload" name="file" style={{  cursor: "pointer !important" }} />
                 </div>
             </div>
             <form className='input-container' onSubmit={(e) => sendChat(e)}>
@@ -51,17 +45,19 @@ function ChatInput(props) {
                     <i className='fa fa-send'></i>
                 </button>
             </form>
-        </Container>
+        </Container >
     )
 }
 
 const Container = styled.div`
     display: grid;
-    height: 12%;
+    height: 8vh !important;
     grid-template-columns: 20% 80%;
-    background-color: #080420;
+    flex: 1;
+    background-color: white;
     padding: 0 2rem;
-    padding-bottom: 0.3rem;
+    margin-top: 16px;
+    padding-bottom: 0.8rem;
 
     .button-container {
         display: flex;
@@ -72,14 +68,15 @@ const Container = styled.div`
             position: relative;
             i {
                 font-size: 1.5rem;
-                color: #ffff00c8;
+                color: #444;
                 cursor: pointer;
+
             }
             .EmojiPickerReact  {
                 position: absolute;
                 top: -400px;
                 height: 370px !important;
-                background-color: #080420;
+                background-color: white;
                 border-color: #9186f3;
 
                 .epr-emoji-category-content {
@@ -99,17 +96,17 @@ const Container = styled.div`
         display: flex;
         align-content: center;
         gap: 2rem;
-        background-color: #ffffff34;
+        background-color: silver;
 
         input {
-            width: 90%;
+            width: 100%;
             background-color: transparent;
-            color: white;
+            color: #111;
             border: none;
             padding-left: 1rem;
             font-size: 1.1rem;
             &::selection{
-                background-color: #9186f3;
+                background-color: #efefef;
             }
             &:focus {
                 outline: none;
@@ -117,15 +114,14 @@ const Container = styled.div`
         }
 
         button {
-            padding: 0.3rem 2rem;
+            padding: 0.2rem 1rem;
             border-radius: 2rem;
-            display: flex;
             justify-content: center;
             align-items: center;
-            background-color:  #9186f3;
+            background-color:  #6585ac;
             border: none;
             i {
-                font-size: 2rem;
+                font-size: 1.5rem;
                 color: white;
             }
         }

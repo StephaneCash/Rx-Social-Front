@@ -31,7 +31,7 @@ function Contacts(props) {
                 currentImage && currentUser && (
                     <Container>
                         <div className='brand'>
-                            <i className='fa fa-comments fa-2x' style={{ color: "white" }}></i>
+                            <i className='fa fa-comments fa-2x' style={{ color: "#444" }}></i>
                             <h3>Chat</h3>
                         </div>
                         <div className='contacts'>
@@ -75,8 +75,9 @@ const Container = styled.div`
     display: grid;
     grid-template-rows: 10% 75% 15%;
     overflow: hidden;
-    background-color: #080420;
-
+    background-color: white;
+    
+    border-radius: 6px;
     .brand {
         display: flex;
         align-items: center;
@@ -90,7 +91,7 @@ const Container = styled.div`
         }
 
         h3 {
-            color: white;
+            color: #444;
             text-transform: uppercase;
         }
     }
@@ -111,7 +112,7 @@ const Container = styled.div`
         }
 
         .contact {
-            background-color: #ffffff39;
+            background-color: #97b1d1;
             min-height: 5rem;
             width: 90%;
             cursor: pointer;
@@ -136,12 +137,12 @@ const Container = styled.div`
             }
         }
         .selected {
-            background-color: #9186f3;
+            background-color: #0c50a2;
         }
     }
 
     .current-user{
-        background-color: #0d0d30;
+        background-color: white;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -158,7 +159,7 @@ const Container = styled.div`
 
         .username {
             h2 {
-                color: white;
+                color: #444;
             }
         }
 
