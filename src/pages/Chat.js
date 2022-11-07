@@ -1,20 +1,30 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import styled from 'styled-components'
 import ChatContainer from '../components/Chat/ChatContainer';
 import Contacts from '../components/Chat/Contacts';
 import Welcome from '../components/Chat/Welcome';
+import { io } from "socket.io-client";
 
 function Chat() {
 
     const usersData = useSelector((state) => state.usersReducer);
     const userData = useSelector((state) => state.userReducer);
+    const host = "http://localhost:5000"
+    const socket = useRef();
 
     const [currentChat, setCurrentChat] = useState(undefined);
 
     const handleChatChange = (chat) => {
         setCurrentChat(chat);
     }
+
+    useEffect(() => {
+        if (userData) {
+            socket.current = io(host);
+            socket.current.emit('add-user', userData._id)
+        }
+    }, [userData])
 
     return (
         <div className=''>
@@ -23,7 +33,8 @@ function Chat() {
                     <Contacts currentUser={userData} contacts={usersData} changeChat={handleChatChange} />
                     {
                         currentChat === undefined ?
-                        <Welcome currentUser={userData} /> : <ChatContainer currentUser={currentChat} />
+                            <Welcome currentUser={userData} /> :
+                            <ChatContainer currentUser={currentChat} userData={userData} socket={socket} />
                     }
                 </div>
             </Container>

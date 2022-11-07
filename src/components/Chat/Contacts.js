@@ -85,6 +85,8 @@ const Container = styled.div`
 
         img {
             height: 2rem;
+            border-radius: 50%;
+            width: 2rem;
         }
 
         h3 {
@@ -122,6 +124,8 @@ const Container = styled.div`
             .avatar {
                 img {
                     height: 3rem;
+                    border-radius: 50%;
+                    width: 3rem;
                 }
             }
 
@@ -147,6 +151,8 @@ const Container = styled.div`
             img {
                 height: 4rem;
                 max-inline-size: 100%;
+                border-radius: 50%;
+                width: 4rem;
             }
         }
 
