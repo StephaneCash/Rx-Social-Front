@@ -7,7 +7,7 @@ function Welcome(props) {
 
     return (
         <Container>
-            <img src='./salut1.gif' alt="Robot" />
+            <img src='./robot.gif' alt="Robot" />
             <h1>Bienvenu(e), {currentUser && currentUser.pseudo} !</h1>
             <h3>Chosissez une personne à converser. </h3>
         </Container>

@@ -5,6 +5,7 @@ import ChatInput from './ChatInput';
 import axios from "axios";
 import "../../styles/Message.css"
 import { v4 as uuidv4 } from "uuid";
+import { timestampParser } from "../Utils"
 
 function ChatContainer(props) {
     const currentUser = props.currentUser;
@@ -17,28 +18,37 @@ function ChatContainer(props) {
     const [arrivalMsg, setArrivalMsg] = useState(null);
     const scrollRef = useRef();
 
-    const handleSendMessage = async (msg) => {
-        await axios.post('http://localhost:5000/api/messages', {
-            from: userData._id,
-            to: currentUser._id,
-            message: msg
-        });
+    const [pic, setPic] = useState('')
+
+    const handleSendMessage = async (msg, file, dateNow,picture) => {
+        const data = new FormData();
+        data.append('from', userData._id)
+        data.append('to', currentUser._id)
+        data.append('message', msg)
+        data.append('file', file)
+
+        setPic(picture)
+
+        await axios.post('http://localhost:5000/api/messages', data);
 
         socket.current.emit("send-msg", {
-            to: currentUser._id,
             from: userData._id,
+            to: currentUser._id,
             message: msg,
+            file: `${file.name}`
         });
 
         const msgs = [...messages];
-        msgs.push({ fromSelf: true, message: msg });
+        const fileName = file.name;
+        console.log(fileName)
+        msgs.push({ fromSelf: true, message: msg, fileName, dateNow });
         setMessages(msgs)
     };
 
     useEffect(() => {
         if (socket.current) {
-            socket.current.on("msg-received", (msg) => {
-                setArrivalMsg({ fromSelf: false, message: msg })
+            socket.current.on("msg-received", (msg, file, dateNow) => {
+                setArrivalMsg({ fromSelf: false, message: msg, file: `${file.name}`, dateNow })
             })
         }
     }, [socket]);
@@ -68,7 +78,7 @@ function ChatContainer(props) {
 
         getAllMessages();
 
-    }, [currentUser])
+    }, [currentUser, userData._id])
 
     return (
         <Container>
@@ -81,7 +91,7 @@ function ChatContainer(props) {
                         <h3>{currentUser && currentUser.pseudo}</h3>
                     </div>
                 </div>
-                
+
                 <BackToHome />
             </div>
             <div className="chat-messages">
@@ -94,15 +104,30 @@ function ChatContainer(props) {
                                         <p>
                                             {val.message}
                                         </p>
+                                        <p>
+
+                                            {
+                                                val.file ?
+                                                    val && val.file && val.file !== undefined &&
+                                                    <>
+                                                        <img src={val.file} width="200" alt={"./" + val.file} />
+                                                        <br />
+                                                        <a href={`./${val.file}`} download>Lire</a>
+                                                    </>
+                                                    : pic && <img src={pic} width="200" alt="" />
+                                            }
+                                        </p>
+
+                                        <i style={{ color: "#efefef", fontSize: "12px" }}>{timestampParser(val.dateNow)}</i>
                                     </div>
                                 </div>
                             </div>
                         )
-                    }) : "Aucun message" 
+                    }) : "Aucun message"
                 }
             </div>
             <ChatInput handleSendMessage={handleSendMessage} />
-        </Container>
+        </Container >
     )
 }
 

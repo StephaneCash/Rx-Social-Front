@@ -8,6 +8,8 @@ function ChatInput(props) {
 
     const [showPicker, setShowPicker] = useState(false);
     const [msg, setMsg] = useState('');
+    const [file, setFile] = useState("");
+    const [picture, setPicture] = useState('');
 
     const handleShowEmoji = () => {
         setShowPicker(!showPicker);
@@ -19,11 +21,21 @@ function ChatInput(props) {
         setMsg(message)
     }
 
+    const handleFiles = (e) =>{
+        setPicture(URL.createObjectURL(e.target.files[0]))
+        setFile(e.target.files[0])
+    }
+
     const sendChat = (e) => {
         e.preventDefault();
+        setFile("");
+        const dateNow = Date.now()
         if (msg.length > 0) {
-            handleSendMessage(msg);
+            handleSendMessage(msg, file, dateNow, picture);
             setMsg("");
+        }
+        if (file.length > 0) {
+            setFile('');
         }
     }
 
@@ -36,7 +48,9 @@ function ChatInput(props) {
                 </div>
                 <div className='fileUpload' style={{ cursor: "pointer" }}>
 
-                    <input type="file" id="file-upload" name="file" style={{  cursor: "pointer !important" }} />
+                    <input type="file" id="file-upload" onChange={handleFiles} name="file"
+                        style={{ cursor: "pointer !important" }} />
+                    <i style={{ color: "silver" }}>{file && file.name}</i>
                 </div>
             </div>
             <form className='input-container' onSubmit={(e) => sendChat(e)}>
