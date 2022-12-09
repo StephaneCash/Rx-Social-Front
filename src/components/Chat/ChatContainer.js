@@ -113,6 +113,7 @@ function ChatContainer(props) {
                                                         <img src={val.file} width="200" alt={"./" + val.file} />
                                                         <br />
                                                         <a href={`./${val.file}`} download>Lire</a>
+                                                        <video src={`./${val.file}`} autoPlay loop muted width="200"></video>
                                                     </>
                                                     : pic && <img src={pic} width="200" alt="" />
                                             }
